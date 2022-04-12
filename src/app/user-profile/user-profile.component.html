@@ -1,0 +1,45 @@
+
+<div *ngIf="isAuth">
+  <p>{{userEmail}}</p>
+  <a (click)="logOut(currentUser.loginId)" routerLink="/login">LogOut</a>
+<button (click)="orderHistory(currentUser.loginId)">Order History</button>
+<table *ngIf="orders.length > 0">
+  <thead>
+<tr>
+  <th>Order Id</th>
+  <th>Name</th>
+  <th>Price</th>
+  <th>Quantity</th>
+  <th>Image</th>
+</tr>
+  </thead>
+  <tbody *ngFor="let order of orders">
+    <tr>
+      <td>
+        {{order.orderId}}
+      </td>
+      <td>
+        {{order.giftName}}
+      </td>
+      <td>
+        {{order.price}}
+      </td>
+      <td>
+        {{order.quantity}}
+      </td>
+      <td>
+
+        <img style="height: 100px; width: 100px;" [src]="imgurl + order.image" alt="" srcset="">
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+</div>
+<div *ngIf="!isAuth">
+  <p>You are not logged in</p>
+  <a  routerLink="['/login']">Login</a>
+</div>
+
+
+
